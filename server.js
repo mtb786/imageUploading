@@ -6,4 +6,4 @@ console.log('hello');
 res.send('hello');
 } );
 
-app.listen(process.env.port || 5000);
+app.listen(config.port || 5000);
