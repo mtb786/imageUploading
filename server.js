@@ -5,5 +5,6 @@ app.use('*',(req,res) => {
 console.log('hello');
 res.send('hello');
 } );
+const PORT = process.env.port||'8080';
 
-app.listen(process.env.port || 3000);
+app.listen(port);
