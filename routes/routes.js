@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         console.log(file);
-      cb(null, file.fieldname + '-' + Date.now()+ file.originalname)
+      cb(null, file.fieldname + '-' + Date.now()+ file.originalname )
     }
 });
 
@@ -19,10 +19,11 @@ module.exports = function(app) {
     var upload = multer({storage: storage});
     app.post('/imageADD', upload.single('image'), (req, res, next) => {
         let user = Imagemodel();
-       
+       console.log('host');
+       console.log(req.hostname);
         user.imageName = req.file.filename;
         user.imageText = req.body.imageText;
-        user.imagePath = req.file.path;
+        user.imagePath = req.hostname+'/img'+req.file.path+req.file.originalname;
         user.save((error) => {
             console.log(error)
             if (error) {

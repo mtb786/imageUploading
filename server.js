@@ -2,11 +2,7 @@ const express = require('express');
 const app = express();
 let bodypareser = require('body-parser');
 let mongo = require('mongoose');
-// app.use('/',(req,res) => {
-// console.log('Hello Karan ');
-// });
-// Mongo Setuping 
-// const dbUrl = `mongodb://adminUsername:${encodeURIComponent('adminPassword')}@localhost:27017/mydb`;
+let path = require('path');
 var url =`mongodb://mtb13:${encodeURIComponent('qwerty123')}@ds131551.mlab.com:31551/imageupload`; 
 mongo.Promise = global.Promise;
 mongo.connect(url,  { useNewUrlParser: true } ,function(err) {
@@ -18,6 +14,8 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+// app.use(express.static(path.join(__dirname, 'uploads')));
+app.use('/img',express.static(__dirname + '/uploads' ));
 
 
 app.use(bodypareser.json());
