@@ -20,10 +20,10 @@ module.exports = function(app) {
     app.post('/imageADD', upload.single('image'), (req, res, next) => {
         let user = Imagemodel();
        console.log('host');
-       console.log(req.hostname);
+       console.log(req.headers.host);
         user.imageName = req.file.filename;
         user.imageText = req.body.imageText;
-        user.imagePath = req.hostname+'/img'+req.file.path+req.file.originalname;
+        user.imagePath = 'https://'+req.headers.host+'/img/'+ req.file.filename;
         user.save((error) => {
             console.log(error)
             if (error) {
