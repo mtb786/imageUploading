@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 let bodypareser = require('body-parser');
 let mongo = require('mongoose');
-// app.use('*',(req,res) => {
+// app.use('/',(req,res) => {
 // console.log('Hello Karan ');
 // });
 // Mongo Setuping 
