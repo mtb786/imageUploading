@@ -33,4 +33,18 @@ module.exports = function(app) {
             }
         })
     });
+
+
+    app.post('/listimage',cors(), (req, res, next) => {
+        try {
+            Imagemodel.find({}).then((responseData, resposneError) => {
+        res.status(200).send({data : responseData}); 
+        });
+        }catch(err) {
+            console.log(err);
+            return res.status(400).send({message : err})
+        }   
+    });
+
+
 }
