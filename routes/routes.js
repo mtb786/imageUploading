@@ -77,7 +77,7 @@ module.exports = function (app) {
     });
 
 
-    app.post('/listimage', (req, res) => {
+    app.post('/deleteimage', (req, res) => {
         
         const path = './uploads/image-1531291141005nvm.png';
 
