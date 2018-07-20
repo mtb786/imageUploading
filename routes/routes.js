@@ -29,10 +29,7 @@ module.exports = function (app) {
     var upload = multer({ storage: storage });
     app.post('/imageADD', upload.single('image'), (req, res, next) => {
 
-        console.log(upload.single('image'));
-        console.log(req.file);
-
-        if (req.body.imageText == null || req.body.imageText == undefined || req.body.imageText == '') {
+        var removeImage = () => {
             const uploads = './uploads/' + req.file.filename;
             fs.unlink(uploads, function (err) {
                 if (err && err.code == 'ENOENT') {
@@ -45,17 +42,26 @@ module.exports = function (app) {
                     console.info(`removed`);
                 }
             });
+        } 
 
+        console.log(req.file);
+        if (req.body.ImageText == null || req.body.ImageText == undefined || req.body.ImageText == '') {
+            removeImage();
             res.status(200).send({ status: false, message: 'Please provide text' });
         } else if (req.file == null || req.file == undefined) {
             res.status(200).send({ status: false, message: 'Please provide image ' });
+        } else if(req.file.mimetype !=='image/png' &&  req.file.mimetype !=='image/jpeg') {
+            removeImage();
+            res.status(200).send({status : false , message : 'Please provide appropriate image file' });
         }
         else {
             let user = Imagemodel();
-            user.imageName = req.file.filename;
-            user.imageText = req.body.imageText;
-            user.imagePath = 'https://' + req.headers.host + '/img/' + req.file.filename;
-
+           
+            user.image_name = req.file.filename;
+            user.image_text = req.body.ImageText;
+            user.image_path = 'https://' + req.headers.host + '/img/' + req.file.filename;
+            user.image_collection_type = req.body.ImageCollectionType;
+            user.image_type = req.file.mimetype; 
             user.save((error) => {
                 if (error) {
                     res.status(400).send({ status: false, message: error });

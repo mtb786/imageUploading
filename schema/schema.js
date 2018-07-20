@@ -1,17 +1,25 @@
 let mongo = require('mongoose');
 
 let user = mongo.Schema({
-    imageText : {
+    image_text : {
     type : String,
     required : true
 },
-imageName : {
+image_name : {
     type : String,
     required : true
 },
-imagePath : {
+image_path : {
     type : String,
     required : true
+},
+image_collection_type : {
+  type : String,
+  required : true
+},
+image_type : {
+ type : String,
+ required : true   
 }
 });
 module.exports = mongo.model('imageupload', user);
