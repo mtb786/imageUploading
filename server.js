@@ -13,7 +13,8 @@ app.use(function(req, res, next) {
     next();
 });
 // app.use(express.static(path.join(__dirname, 'uploads')));
-app.use('/img',express.static(__dirname + '/uploads' ));
+
+app.use('/img', express.static(path.join(__dirname, 'uploads')));
 
 
 app.use(bodypareser.urlencoded({
@@ -25,5 +26,9 @@ app.use(bodypareser.json());
 APP_DATABASE.database();
 // Routing File Set for controller calling
 IMAGEUPLOAD_APP.requirePath();
+
 // App Start
-IMAGEUPLOAD_APP.start()
+app.listen(8080, () => {
+    console.log(`Server started on port`);
+   
+}); 
