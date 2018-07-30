@@ -28,7 +28,8 @@ APP_DATABASE.database();
 IMAGEUPLOAD_APP.requirePath();
 
 // App Start
-app.listen(8080, () => {
+var port = process.env.PORT || '8080';
+app.listen(8080 , () => {
     console.log(`Server started on port`);
    
 }); 
