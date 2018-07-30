@@ -6,7 +6,7 @@ global.IMAGEUPLOAD_APP= {
  requirePath : function() {
      console.log('pathReqired');
    return require('../routes/routes')(this.app); 
- }   
+ } 
 }
 
 

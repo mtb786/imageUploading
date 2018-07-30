@@ -21,11 +21,11 @@ app.use(bodypareser.urlencoded({
     extended:false
 }));
 app.use(bodypareser.json());
-
+require('./routes/routes')(app);
 // DataBase Connection 
 APP_DATABASE.database();
 // Routing File Set for controller calling
-IMAGEUPLOAD_APP.requirePath();
+
 
 // App Start
 var port = process.env.PORT || '8080';
