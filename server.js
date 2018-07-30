@@ -28,8 +28,8 @@ APP_DATABASE.database();
 
 
 // App Start
-var port = process.env.PORT || '8080';
-app.listen(8080 , () => {
+var  = process.env.PORT || '8080';
+app.listen(port , () => {
     console.log(`Server started on port`);
    
 }); 
