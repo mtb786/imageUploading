@@ -21,15 +21,16 @@ app.use(bodypareser.urlencoded({
     extended:false
 }));
 app.use(bodypareser.json());
-require('./routes/routes')(app);
+
 // DataBase Connection 
 APP_DATABASE.database();
 // Routing File Set for controller calling
-
+require('./routes/routes')(app);
 
 // App Start
 var port  = process.env.PORT || '8080';
 app.listen(port , () => {
+    console.log(port);
     console.log(`Server started on port`);
    
 }); 

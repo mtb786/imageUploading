@@ -27,8 +27,9 @@ function errorMiddleWare(req, res, next) {
 module.exports = function (app) {
     'use-strict'
     var upload = multer({ storage: storage });
+     
     app.post('/imageADD', upload.single('image'), (req, res, next) => {
-
+                
         var removeImage = () => {
             const uploads = './uploads/' + req.file.filename;
             fs.unlink(uploads, function (err) {
@@ -76,7 +77,8 @@ module.exports = function (app) {
 
     app.post('/listimage', cors(), (req, res, next) => {
         try {
-
+        
+           
             Imagemodel.find({}).then((responseData, resposneError) => {
                 res.status(200).send({ data: responseData });
             });
